@@ -30,9 +30,9 @@ public class Main : MonoBehaviour
         for (int i = 0; i < 8; i++)
             AddTile(new Vector3(45, -.25f, 5 + i * 5));
         for (int i = 0; i < 10; i++)
-            AddTile(new Vector3(45 - 5 * i, -.25f, 40));
+            AddTile(new Vector3(45 - 5 * i, -.25f, 45));
         for (int i = 0; i < 8; i++)
-            AddTile(new Vector3(0, -.25f, 35 - i * 5));
+            AddTile(new Vector3(0, -.25f, 40 - i * 5));
     }
     /// <summary>
     /// Adds a tile at the specified world position.
