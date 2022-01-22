@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
-    public GameObject Player;
+    public Button roll;
+    public Player player;
     List<GameObject> tiles = new List<GameObject>();
     public GameObject tile;
 
@@ -12,6 +14,7 @@ public class Main : MonoBehaviour
     void Start()
     {
         MakeBoard();
+        roll.onClick.AddListener(take_turn);
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class Main : MonoBehaviour
             AddTile(new Vector3(45 - 5 * i, -.25f, 45));
         for (int i = 0; i < 8; i++)
             AddTile(new Vector3(0, -.25f, 40 - i * 5));
+        tiles.Reverse(1, 35);
     }
     /// <summary>
     /// Adds a tile at the specified world position.
@@ -42,5 +46,22 @@ public class Main : MonoBehaviour
     {
         tiles.Add(GameObject.Instantiate(tile, tilePos, Quaternion.identity));
     }
+    int roll_dice()
+    {
+        return (Random.Range(1, 7) + Random.Range(1, 7));
+    }
+
+    public void take_turn()
+    {
+        int roll = roll_dice();
+        int new_pos = roll + player.pos;
+        if(new_pos > 36)
+        {
+            new_pos -= 36;
+        }
+        player.transform.position = tiles[new_pos].transform.position;
+        player.pos = new_pos;
+    }
+    
 }
 
