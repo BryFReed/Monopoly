@@ -7,7 +7,7 @@ public class Main : MonoBehaviour
 {
     public Button roll;
     public Player player;
-    List<GameObject> tiles = new List<GameObject>();
+    List<Tile> tiles = new List<Tile>();
     public GameObject tile;
 
     // Start is called before the first frame update
@@ -44,7 +44,11 @@ public class Main : MonoBehaviour
     /// <param name="tilePos">World position of the Tile to add</param>
     void AddTile(Vector3 tilePos)
     {
-        tiles.Add(GameObject.Instantiate(tile, tilePos, Quaternion.identity));
+        Tile nu = new Property("fuck", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        Tile_in_eng joe = Instantiate(tile, tilePos, Quaternion.identity).GetComponent<Tile_in_eng>();
+        tiles.Add(nu);
+        nu.eng = joe;
+        joe.tile = nu;
     }
     int roll_dice()
     {
@@ -55,12 +59,17 @@ public class Main : MonoBehaviour
     {
         int roll = roll_dice();
         int new_pos = roll + player.pos;
-        if(new_pos > 36)
+        if(new_pos > 35)
         {
-            new_pos -= 36;
+            new_pos -= 35;
         }
-        player.transform.position = tiles[new_pos].transform.position;
+        Tile_in_eng new_tile = tiles[new_pos].eng;
+        player.transform.position = new_tile.transform.position;
         player.pos = new_pos;
+        
+         new_tile.tile.interact(player);
+        
+        print(new_pos);
     }
     
 }

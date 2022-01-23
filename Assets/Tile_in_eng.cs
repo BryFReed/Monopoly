@@ -2,26 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Player : MonoBehaviour
+public class Tile_in_eng : MonoBehaviour
 {
-    public int money;
-    public List<int> wallet;
-    public int pos = 0;
+    public Tile tile;
+    // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-
-
-        
-
-
     }
-
 }
